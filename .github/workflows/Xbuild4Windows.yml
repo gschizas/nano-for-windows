@@ -439,8 +439,11 @@ jobs:
 
         PDTERM="wincon"
         echo "PDTERM=${PDTERM}" >> $GITHUB_ENV
+        echo $GITHUB_ENV
         export CFLAGS="-Oz -fno-math-errno -flto"
         cd "nano/curses/${PDTERM}"
+          which make
+          echo make -j$(($(nproc)*2)) WIDE=Y UTF8=Y _${{matrix.short}}=Y
           make -j$(($(nproc)*2)) WIDE=Y UTF8=Y _${{matrix.short}}=Y
 
     - name: "🔧 Configure Nano Build"
